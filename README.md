@@ -2,7 +2,7 @@
 
 PHP demo with a Tailwind/Vite CSS build. This is not the Laravel MVC application used by XLAP; it remains an independent demo and does not process real registration or payments.
 
-## Setup
+## Local setup
 
 ```powershell
 npm install
@@ -10,6 +10,19 @@ npm run build
 php -S 127.0.0.1:8000
 ```
 
-Open `http://127.0.0.1:8000/`. Run `npm run build` after changing styles. The PHP server serves `dist/assets/style.css`; `assets/style.css` remains the source for the existing page styles and `src/input.css` provides Tailwind directives.
+Open `http://127.0.0.1:8000/`.
 
-Do not enter real payment card information. The payment fields are display-only in this demo, and `Next` navigates to the Store screen without submitting them.
+## Deploy on Render
+
+This repository includes a Docker deployment. In Render choose **New > Web Service**, select this repository, then set:
+
+- **Runtime/Language:** Docker (not Node)
+- **Branch:** `main`
+- **Dockerfile:** `./Dockerfile`
+- **Build command:** leave empty
+- **Start command:** leave empty
+- **Plan:** Free for testing, or a paid plan if it must stay warm
+
+Render builds the Vite/Tailwind assets inside Docker and starts PHP on Render's `$PORT`. `render.yaml` can also be used with Render Blueprint.
+
+This demo does not process real registration, payment, or identity documents. Do not enter real card or identity information.
